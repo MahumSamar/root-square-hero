@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Root Square — Ready to see real progress?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pompiere&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --mint: #ebf4e6;
+    --forest: #1c5a3a;
+    --ink: #1f3a2b;
+    --leaf: #1fd672;
+    --leaf-hover: #45e58c;
+
+    /* everything scales off the 1024px-wide reference frame */
+    --u: clamp(1px, 0.09766vw, 2.4px);
+    --gutter: calc(var(--u) * 27);
+  }
+
+  html, body { height: 100%; background: var(--mint); }
+
+  body {
+    font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 420px;
+    width: 100%;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--mint);
+  }
+
+  .hero__media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 100%;
+    z-index: -1;
+  }
+
+  .hero__content {
+    position: absolute;
+    top: 15.6%;
+    left: var(--gutter);
+    right: var(--gutter);
+  }
+
+  .hero__title {
+    font-family: "Pompiere", "Sue Ellen Francisco", "Comic Neue", cursive;
+    font-weight: 400;
+    font-size: calc(var(--u) * 34);
+    line-height: 0.92;
+    letter-spacing: 0.012em;
+    text-transform: uppercase;
+    color: var(--forest);
+  }
+
+  .hero__lede {
+    margin-top: calc(var(--u) * 13);
+    font-size: calc(var(--u) * 9.4);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+  }
+
+  .hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: calc(var(--u) * 14);
+    height: calc(var(--u) * 26);
+    padding: 0 calc(var(--u) * 10);
+    border: 1px solid var(--forest);
+    border-radius: 999px;
+    background: var(--leaf);
+    color: #0d2b1b;
+    font-size: calc(var(--u) * 9);
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform .25s ease, background-color .25s ease;
+  }
+  .hero__cta:hover { transform: translateY(-2px); background: var(--leaf-hover); }
+  .hero__cta:focus-visible { outline: 2px solid var(--forest); outline-offset: 3px; }
+
+  /* small screens: the reference scale gets too tiny to read */
+  @media (max-width: 720px) {
+    :root { --gutter: 20px; }
+    .hero__media { object-position: 50% 100%; }
+    .hero__content { top: 9%; }
+    .hero__title { font-size: 38px; }
+    .hero__lede { margin-top: 14px; font-size: 15px; line-height: 1.35; }
+    .hero__lede br { display: none; }
+    .hero__cta { margin-top: 18px; height: 44px; padding: 0 20px; font-size: 15px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__cta { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <video class="hero__media" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1"
+         poster="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261008_081029_737ea2d4-4d26-431a-9c30-4ce5ac33e87a.png">
+    <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261008_081123_12a5410a-c52e-4bc7-be09-e709ec97211c.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero__content">
+    <h1 class="hero__title">Ready to see<br>real progress?</h1>
+    <p class="hero__lede">Try one session - no commitment, no pressure.<br>You'll quickly feel if Root Square is the right fit for your child.</p>
+    <a class="hero__cta" href="#contact">Talk to Us</a>
+  </div>
+</section>
+
+<script>
+  // Hold on the still plate for visitors who ask for reduced motion.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var v = document.querySelector('.hero__media');
+    v.removeAttribute('autoplay');
+    v.pause();
+  }
+</script>
+</body>
+</html>
